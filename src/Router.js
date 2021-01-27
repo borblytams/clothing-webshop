@@ -1,4 +1,4 @@
-import { Switch, Route, Link } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 
 import HomePage from "./pages/homepage/homepage.component";
 import ShopPage from "./pages/shop/shop.component";
@@ -24,7 +24,13 @@ const Router = () => {
 			<Route exact path="/shop" component={ShopPage} />
 			<Route exact path="/" component={HomePage} />
 			<Route exact path="/signin" component={SignInAndSignnUp} />
-			<Route exact path="/topics/:topicId" component={TopicDetail} />
+			<Route
+				exact
+				path="/topics/:topicId"
+				render={() =>
+					this.props.currentUser ? <Redirect to="/" /> : SignInAndSignnUp
+				}
+			/>
 		</Switch>
 	);
 };

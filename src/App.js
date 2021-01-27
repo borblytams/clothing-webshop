@@ -1,5 +1,4 @@
 import React from "react";
-import { Switch, Route, Link } from "react-router-dom";
 import { auth } from "./firebase/firebase.utils";
 import { connect } from "react-redux";
 import { setCurrentUser } from "./redux/user/user.actions";
@@ -51,6 +50,11 @@ class App extends React.Component {
 		);
 	}
 }
+
+const mapStateToProps = ({ user }) => ({
+	currentUser: user.currentUser,
+});
+
 const mapDispathToProps = (dispatch) => ({
 	setCurrentUser: (user) => dispatch(setCurrentUser(user)),
 });
